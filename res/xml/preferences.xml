@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.lorol.rss" >
+
+    <PreferenceCategory
+        android:key="parameters"
+        android:title="@string/parameters" >
+        <EditTextPreference
+            android:key="rsstitle"
+            android:defaultValue="Goo.im"
+            android:title="@string/rsstitle" />
+        <EditTextPreference
+            android:key="rssurl"
+            android:defaultValue="http://goo.im/rss&amp;path=/devs/paranoidandroid/roms"
+            android:title="@string/rssurl" />
+        <EditTextPreference
+            android:key="pattern"
+            android:defaultValue="item>title:containsOwn(mako) , item>title:containsOwn(gapps)"
+            android:title="@string/pattern" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pars"
+            android:summary="@string/pars_info"
+            android:title="@string/pars_title" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="scron"
+            android:summary="@string/scron_info"
+            android:title="@string/scron_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showon"
+            android:summary="@string/showon_info"
+            android:title="@string/showon_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

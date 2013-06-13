@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="extension_name">Simple html-xml</string>
+    <string name="parameters">Settings</string>
+    <string name="application_name">Dashclock simple html-xml extension</string>
+    <string name="preferences_title">Extension settings</string>
+    <string name="extension_info">Displays part of rss, xml or webpage.</string>
+    <string name="scron_info">Update on screen wakeup</string>
+    <string name="scron_title">ScreenOn refresh</string>
+    <string name="showon_info">Always show</string>
+    <string name="showon_title">Persistent</string>
+    <string name="pars_info">Select HTML or XML</string>
+    <string name="pars_title">XML</string>
+    <string name="rssurl">URL to fetch</string>
+    <string name="rsstitle">Title on dash</string>
+    <string name="pattern">Jsoup pattern</string>
+
+</resources>
