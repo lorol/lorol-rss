@@ -88,6 +88,10 @@ public class rssSettings extends PreferenceActivity {
         bindPreferenceSummaryToValue(findPreference("rsstitle"));
         bindPreferenceSummaryToValue(findPreference("rssurl"));
         bindPreferenceSummaryToValue(findPreference("pattern"));
+        bindPreferenceSummaryToValue(findPreference("toms"));
+        bindPreferenceSummaryToValue(findPreference("rvr"));
+        bindPreferenceSummaryToValue(findPreference("nums"));
+        bindPreferenceSummaryToValue(findPreference("show_indexes"));
     }
 
 }

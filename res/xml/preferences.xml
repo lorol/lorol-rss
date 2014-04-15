@@ -6,15 +6,20 @@
         android:title="@string/parameters" >
         <EditTextPreference
             android:key="rsstitle"
-            android:defaultValue="Goo.im"
+            android:defaultValue="CNN World"
             android:title="@string/rsstitle" />
         <EditTextPreference
             android:key="rssurl"
-            android:defaultValue="http://goo.im/rss&amp;path=/devs/paranoidandroid/roms"
+            android:defaultValue="http://rss.cnn.com/rss/cnn_world.rss"
             android:title="@string/rssurl" />
         <EditTextPreference
+            android:key="toms"
+            android:defaultValue="3000"
+            android:summary="@string/toms_info"
+            android:title="@string/toms_title" />
+        <EditTextPreference
             android:key="pattern"
-            android:defaultValue="item>title:containsOwn(mako) , item>title:containsOwn(gapps)"
+            android:defaultValue="item>title, item>pubdate"
             android:title="@string/pattern" />
         <CheckBoxPreference
             android:defaultValue="true"
@@ -31,6 +36,20 @@
             android:key="showon"
             android:summary="@string/showon_info"
             android:title="@string/showon_title" />
+         <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="rvr"
+            android:summary="@string/rvr_info"
+            android:title="@string/rvr_title" />
+         <EditTextPreference
+            android:key="show_indexes"
+            android:summary="@string/ss_info"
+            android:title="@string/ss_title" />
+         <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="nums"
+            android:summary="@string/nums_info"
+            android:title="@string/nums_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

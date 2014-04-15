@@ -1,6 +1,7 @@
 package com.lorol.rss.services;
 
 import java.io.IOException;
+import java.net.URL;
 
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
@@ -32,6 +33,7 @@ public class rssWidget extends DashClockExtension {
 	protected void onUpdateData(int arg0) {
 		
 		boolean allGood = false;
+		int mytags = 0;
 		
 		SharedPreferences speSettings = PreferenceManager.getDefaultSharedPreferences(this);
 		
@@ -50,27 +52,46 @@ public class rssWidget extends DashClockExtension {
 						try {
 							
 							boolean asXML = speSettings.getBoolean("pars", true);
+							boolean rvr = speSettings.getBoolean("rvr", false);
+							int toms = Integer.parseInt(speSettings.getString("toms", "3000"));	
+							String[] SS = speSettings.getString("show_indexes", "1,0,3,2").split(",");
 							
 							Parser mypar = Parser.xmlParser();
 							if (!asXML) mypar = Parser.htmlParser();
 							
-							Document doc = Jsoup.connect(speSettings.getString("rssurl","http://goo.im/rss&path=/devs/paranoidandroid/roms"))
+							URL myurl = new URL(speSettings.getString("rssurl","http://rss.cnn.com/rss/cnn_world.rss")); 
+							// To fix the issues with & and other symbols in URL string
+							
+							Document doc = Jsoup.connect(myurl.toString())
 								    .parser(mypar)  // parse as XML,
+								    .timeout(toms)
 								    .get();
 							
-							Elements lz = doc.select(speSettings.getString("pattern","item>title:containsOwn(mako) , item>title:containsOwn(gapps)")); 
+							Elements lz = doc.select(speSettings.getString("pattern","item>title, item>pubdate"));
+							if (lz.size() > 0) mytags = lz.size();
 							
 							try {
-									
 									int i = 0;
-									while ((lz.get(i).text() != null) && (i < 4)){
-											if (!lz.get(i).text().isEmpty()){	
+									int j = 0;
+									int k = 0;
+									
+									while ((i < 4) && (i < mytags) && ( i < SS.length)){ 
+											if (rvr) j = mytags - i - 1;
+												else j = i;
+											
+											try {
+													k = Integer.parseInt(SS[j]);
+												} catch (NumberFormatException e) {
+													break;
+												}
+											
+											if (lz.get(k).text() != null){	
 												edtInformation
 													.expandedBody((edtInformation.expandedBody() == null ? ""
 													: edtInformation.expandedBody() + "\n")
-													+ lz.get(i).text());
-												i++;
+													+ lz.get(k).text());
 											 }
+											i++;
 									}									
 									
 									edtInformation.visible(true);
@@ -92,11 +113,17 @@ public class rssWidget extends DashClockExtension {
         }
 		
         boolean showOn = speSettings.getBoolean("showon", true);
-        edtInformation.status(speSettings.getString("rsstitle", "Goo.im"));
-
+        boolean numsOn = speSettings.getBoolean("nums", true);
+        
+        if (numsOn){
+        	edtInformation.status( "(" + String.valueOf(mytags) + ") " + speSettings.getString("rsstitle", "CNN World"));
+        } else {
+        	edtInformation.status(speSettings.getString("rsstitle", "CNN World"));
+        }
+        
         if ((allGood)||(showOn)){
 			if (!allGood){
-				edtInformation.status(speSettings.getString("rsstitle", "Goo.im") + "*");
+				edtInformation.status(speSettings.getString("rsstitle", "CNN World") + " *");
 				edtInformation.expandedBody(null); 
 				edtInformation.visible(true);
 			}		
@@ -109,7 +136,6 @@ public class rssWidget extends DashClockExtension {
         
         publishUpdate(edtInformation);
 	}
-
 
 	public void onDestroy() {
 		super.onDestroy();
