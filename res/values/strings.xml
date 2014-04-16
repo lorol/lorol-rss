@@ -1,9 +1,9 @@
 <resources>
     <string name="extension_name">Jsoup Dash</string>
     <string name="parameters">Settings</string>
-    <string name="application_name">Dashclock Jsoup Dash 2 extension</string>
+    <string name="application_name">Dashclock Jsoup Dash extension</string>
     <string name="preferences_title">Extension settings</string>
-    <string name="extension_info">Jsoup HTML/XML data extractor. Displays up to 4 items</string>
+    <string name="extension_info">Jsoup HTML/XML data extractor. Displays up to 5 items</string>
     <string name="rsstitle">Title on dash</string>
     <string name="rssurl">URL to fetch</string>
     <string name="pattern">Jsoup pattern</string>    

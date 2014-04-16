@@ -54,7 +54,7 @@ public class rssWidget extends DashClockExtension {
 							boolean asXML = speSettings.getBoolean("pars", true);
 							boolean rvr = speSettings.getBoolean("rvr", false);
 							int toms = Integer.parseInt(speSettings.getString("toms", "3000"));	
-							String[] SS = speSettings.getString("show_indexes", "1,0,3,2").split(",");
+							String[] SS = speSettings.getString("show_indexes", "1,0,3,2,4").split(",");
 							
 							Parser mypar = Parser.xmlParser();
 							if (!asXML) mypar = Parser.htmlParser();
@@ -72,15 +72,15 @@ public class rssWidget extends DashClockExtension {
 							
 							try {
 									int i = 0;
-									int j = 0;
 									int k = 0;
 									
-									while ((i < 4) && (i < mytags) && ( i < SS.length)){ 
-											if (rvr) j = mytags - i - 1;
-												else j = i;
+									while ((i < 5) && (i < mytags) && ( i < SS.length)){ 
+
 											
 											try {
-													k = Integer.parseInt(SS[j]);
+													k = Integer.parseInt(SS[i]);
+													if (rvr) k = mytags - k - 1;
+	
 												} catch (NumberFormatException e) {
 													break;
 												}
